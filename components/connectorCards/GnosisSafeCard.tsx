@@ -31,7 +31,7 @@ export default function GnosisSafeCard() {
       isActivating={isActivating}
       isActive={isActive}
       error={error}
-      setError={setError}
+      setError={setError as (error: Error | undefined) => void}
       accounts={accounts}
       provider={provider}
       ENSNames={ENSNames}

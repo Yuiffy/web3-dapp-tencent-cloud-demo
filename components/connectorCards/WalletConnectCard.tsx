@@ -39,7 +39,7 @@ export default function WalletConnectCard() {
       isActivating={isActivating}
       isActive={isActive}
       error={error}
-      setError={setError}
+      setError={setError as (error: Error | undefined) => void}
       accounts={accounts}
       provider={provider}
       ENSNames={ENSNames}

@@ -19,7 +19,7 @@ const CELO: AddEthereumChainParameter['nativeCurrency'] = {
 }
 
 interface BasicChainInformation {
-  urls: string[]
+  urls: (string)[]
   name: string
 }
 
@@ -49,10 +49,10 @@ export function getAddChainParameters(chainId: number): AddEthereumChainParamete
   }
 }
 
-const getInfuraUrlFor = (network: string) =>
-  process.env.infuraKey ? `https://${network}.infura.io/v3/${process.env.infuraKey}` : undefined
-const getAlchemyUrlFor = (network: string) =>
-  process.env.alchemyKey ? `https://${network}.alchemyapi.io/v2/${process.env.alchemyKey}` : undefined
+const getInfuraUrlFor = (network: string): string =>
+  process.env.infuraKey ? `https://${network}.infura.io/v3/${process.env.infuraKey}` : ''
+const getAlchemyUrlFor = (network: string): string =>
+  process.env.alchemyKey ? `https://${network}.alchemyapi.io/v2/${process.env.alchemyKey}` : ''
 
 type ChainConfig = { [chainId: number]: BasicChainInformation | ExtendedChainInformation }
 

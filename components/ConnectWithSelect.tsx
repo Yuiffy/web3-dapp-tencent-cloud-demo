@@ -58,7 +58,7 @@ export function ConnectWithSelect({
   error: Error | undefined
   setError: (error: Error | undefined) => void
 }) {
-  const [desiredChainId, setDesiredChainId] = useState<number>(undefined)
+  const [desiredChainId, setDesiredChainId] = useState<number>(-1)
 
   /**
    * When user connects eagerly (`desiredChainId` is undefined) or to the default chain (`desiredChainId` is -1),
@@ -98,7 +98,7 @@ export function ConnectWithSelect({
         }
 
         setError(undefined)
-      } catch (error) {
+      } catch (error: any) {
         setError(error)
       }
     },
@@ -108,7 +108,7 @@ export function ConnectWithSelect({
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       {!(connector instanceof GnosisSafe) && (
-        <ChainSelect activeChainId={desiredChainId} switchChain={switchChain} chainIds={chainIds} />
+        <ChainSelect activeChainId={desiredChainId} switchChain={switchChain} chainIds={chainIds as number[]} />
       )}
       <div style={{ marginBottom: '1rem' }} />
       {isActive ? (
@@ -122,7 +122,7 @@ export function ConnectWithSelect({
               } else {
                 void connector.resetState()
               }
-              setDesiredChainId(undefined)
+              setDesiredChainId(undefined as any)
             }}
           >
             Disconnect
